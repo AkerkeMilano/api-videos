@@ -1,5 +1,7 @@
 import express from 'express'
 import cors from 'cors'
+import { SETTINGS } from './settings'
+import { blogsRouter } from './blogs'
  
 export const app = express() // создать приложение
 app.use(express.json()) // создание свойств-объектов body и query во всех реквестах
@@ -11,3 +13,4 @@ app.get('/', (req, res) => {
 })
 // app.get(SETTINGS.PATH.VIDEOS, getVideosController)
 // app.use(SETTINGS.PATH.VIDEOS, videosRouter)
+app.use(SETTINGS.PATH.BLOGS, blogsRouter)
