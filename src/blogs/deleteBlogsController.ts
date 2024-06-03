@@ -4,7 +4,6 @@ import { Request, Response } from "express"
 export const deleteBlogsController = async (req: Request, res: Response) => {
     const deletedBlog = await deleteBlogsRepository(req.params.id)
 
-    console.log("blog---------", deletedBlog)
     if(!deletedBlog) {
         res.status(HTTP_STATUSES.NOT_FOUND_404).json("Blog with current id does not exist")
         return;

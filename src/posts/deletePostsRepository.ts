@@ -1,12 +1,13 @@
 import { db } from "../db/db"
 
 export const deletePostsRepository = (id: string) => {
-    const postIndex = db.posts.findIndex(post => post.id === id)
-    const post = db.posts[postIndex]
-    if(postIndex === -1){
+    const post = db.posts.find(post => post.id === id)
+
+    if(!post){
         return
     }
+    const filteredPost = db.posts.filter(post => post.id === id)
+    db.posts = [...filteredPost]
 
-    db.posts = [ ...db.posts.splice(postIndex, 1)]
     return post
 }

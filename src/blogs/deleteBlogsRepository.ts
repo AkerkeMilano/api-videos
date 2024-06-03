@@ -1,12 +1,12 @@
 import { db } from "../db/db"
 
 export const deleteBlogsRepository = (id: string) => {
-    const deletedBlogIndex = db.blogs.findIndex(blog => blog.id === id)
-    const blog = db.blogs[deletedBlogIndex]
+    const deletedBlog = db.blogs.find(blog => blog.id === id)
 
-    if(deletedBlogIndex === -1) {
+    if(!deletedBlog) {
         return;
     }
-    db.blogs = [ ...db.blogs.splice(deletedBlogIndex, 1)]
-    return blog
+    const filteredBlogs = db.blogs.filter(blog => blog.id === id)
+    db.blogs = [ ...filteredBlogs]
+    return deletedBlog
 }

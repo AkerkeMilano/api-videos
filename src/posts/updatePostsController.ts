@@ -6,6 +6,7 @@ export const updatePostsController = async (req: Request, res: Response) => {
 
     if(!updatedPosts) {
         res.status(HTTP_STATUSES.NOT_FOUND_404).json("Post with current id doesn't exist")
+        return
     }
     res.status(HTTP_STATUSES.NO_CONTENT_204).json(updatedPosts)
 }
