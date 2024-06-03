@@ -9,10 +9,16 @@ export const createPostsRepository = async (input: PostInputType) => {
         return;
     }
 
-    const updatedPost = {
+    const newPost = {
         ...input,
         blogName: blog.name,
-        id: String(Date.now() + Math.random())
+        id: Math.round(Date.now() + Math.random()).toString()
     }
-    return updatedPost
+
+    try {
+        db.posts = [ ...db.posts, newPost]
+    } catch(e: any) {
+        return { error: e.message }
+    }
+    return newPost
 }
