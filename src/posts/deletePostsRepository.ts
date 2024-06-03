@@ -6,7 +6,7 @@ export const deletePostsRepository = (id: string) => {
     if(!post){
         return
     }
-    const filteredPost = db.posts.filter(post => post.id === id)
+    const filteredPost = db.posts.filter(post => post.id !== id)
     db.posts = [...filteredPost]
 
     return post

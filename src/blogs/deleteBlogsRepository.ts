@@ -6,7 +6,7 @@ export const deleteBlogsRepository = (id: string) => {
     if(!deletedBlog) {
         return;
     }
-    const filteredBlogs = db.blogs.filter(blog => blog.id === id)
+    const filteredBlogs = db.blogs.filter(blog => blog.id !== id)
     db.blogs = [ ...filteredBlogs]
     return deletedBlog
 }

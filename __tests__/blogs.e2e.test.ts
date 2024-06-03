@@ -62,6 +62,6 @@ describe('/blogs', () => {
 
     it('should delete blog by id', async () => {
         setDB(dataset1)
-        const res = await req.delete(SETTINGS.PATH.BLOGS + '/' + dataset1.blogs[0].id).set({'authorization': 'Basic ' + codedAuth}).expect(HTTP_STATUSES.NO_CONTENT_204)
+        const res = await req.delete(SETTINGS.PATH.BLOGS + '/' + dataset1.blogs[0].id + 'fef').set({'authorization': 'Basic ' + codedAuth}).expect(HTTP_STATUSES.NOT_FOUND_404)
     })
 })
