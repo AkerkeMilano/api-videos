@@ -5,9 +5,13 @@ import { postBlogsRepository } from "../blogs/postBlogsRepository"
 export const createPostsRepository = async (input: PostInputType) => {
     const blog = await postBlogsRepository.getById(input.blogId)
 
+    if(!blog) {
+        return;
+    }
+
     const updatedPost = {
         ...input,
-        blogName: blog?.name,
+        blogName: blog.name,
         id: String(Date.now() + Math.random())
     }
     return updatedPost

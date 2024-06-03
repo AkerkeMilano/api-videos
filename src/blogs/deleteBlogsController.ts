@@ -7,7 +7,7 @@ export const deleteBlogsController = async (req: Request, res: Response) => {
     console.log("blog---------", deletedBlog)
     if(!deletedBlog) {
         res.status(HTTP_STATUSES.NOT_FOUND_404).json("Blog with current id does not exist")
-        return
+        return;
     }
     res.status(HTTP_STATUSES.NO_CONTENT_204).json("Blog was deleted")
 }
