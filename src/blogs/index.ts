@@ -1,18 +1,19 @@
 import {Router} from 'express'
 import {getBlogsController} from './getBlogsController'
 import { postBlogsController } from './postBlogsController'
-import { inputCheckErrorsMiddleware, postInputValidators } from '../validators/blogsValidators'
+import { inputCheckErrorsMiddleware, blogInputValidators } from '../validators/blogsValidators'
 import { getBlogsControllerById } from './getBlogsControllerById'
 import { updateBlogsController } from './updateBlogsController'
 import { deleteBlogsController } from './deleteBlogsController'
+import { authMiddleware } from '../validators/authMiddleware'
 
 export const blogsRouter = Router()
  
 blogsRouter.get('/', getBlogsController)
-blogsRouter.post('/', postInputValidators, inputCheckErrorsMiddleware, postBlogsController)
+blogsRouter.post('/', authMiddleware, blogInputValidators, inputCheckErrorsMiddleware, postBlogsController)
 blogsRouter.get('/:id', getBlogsControllerById)
-blogsRouter.put('/:id',  postInputValidators, inputCheckErrorsMiddleware, updateBlogsController)
-blogsRouter.delete('/:id', deleteBlogsController)
+blogsRouter.put('/:id',  authMiddleware, blogInputValidators, inputCheckErrorsMiddleware, updateBlogsController)
+blogsRouter.delete('/:id', authMiddleware, deleteBlogsController)
 // ...
  
 // не забудьте добавить роут в апп

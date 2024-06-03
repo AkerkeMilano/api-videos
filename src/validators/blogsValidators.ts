@@ -27,7 +27,7 @@ const postWebsiteUrlValidator = body('websiteUrl')
 }).withMessage('website url does not match the template')
 .notEmpty()
 
-export const postInputValidators = [
+export const blogInputValidators = [
     postNameInputValidator,
     postDescriptionValidator,
     postWebsiteUrlValidator

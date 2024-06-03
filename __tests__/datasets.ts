@@ -5,8 +5,18 @@ export type BlogDBType = {
     websiteUrl: string
 }
 
+export type PostDBType = {
+    id: string,
+    title: string,
+    shortDescription: string,
+    content: string,
+    blogId: string,
+    blogName: string
+}
+
 type DBType = {
     blogs: BlogDBType[],
+    posts: PostDBType[]
 }
 
 const blog1: BlogDBType = {
@@ -23,24 +33,25 @@ const blog2: BlogDBType = {
     websiteUrl: "https://blog.logrocket.com/"
 }
 
-// const post1: FullPostType = {
-//     id: "333r3r3",
-//     title: "Hello",
-//     shortDescription: "This is description of my state",
-//     content: "About greeting",
-//     blogId: "998dff9",
-//     blogName: "About IT and AI"
-// }
+const post1: PostDBType = {
+    id: "333r3r3",
+    title: "Hello",
+    shortDescription: "This is description of my state",
+    content: "About greeting",
+    blogId: "1",
+    blogName: "About IT and AI"
+}
 
-// const post2: FullPostType = {
-//     id: "bfhtr666",
-//     title: "Killsddf",
-//     shortDescription: "This is description of my gergr",
-//     content: "About greeting ferfer",
-//     blogId: "t54t555",
-//     blogName: "About IT and AI"
-// }
+const post2: PostDBType = {
+    id: "bfhtr666",
+    title: "Killsddf",
+    shortDescription: "This is description of my gergr",
+    content: "About greeting ferfer",
+    blogId: "2",
+    blogName: "About IT and AI"
+}
 
 export const dataset1: DBType = {
-    blogs: [blog1, blog2]
+    blogs: [blog1, blog2],
+    posts: [post1, post2]
 }

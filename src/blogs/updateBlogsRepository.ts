@@ -3,10 +3,11 @@ import { db } from "../db/db"
 
 export const updateBlogsRepository = (id: string, input: BlogInputType) => {
     const indexOfBlog = db.blogs.findIndex(blog => blog.id === id)
-    const copyOfBlogs = [...db.blogs]
     if(indexOfBlog === -1) {
         return;
     }
+    const copyOfBlogs = [...db.blogs]
+
     const updatedBlog = { ...input, id: copyOfBlogs[indexOfBlog].id}
     const updatedBlogs = [
         ...copyOfBlogs.slice(0, indexOfBlog),
