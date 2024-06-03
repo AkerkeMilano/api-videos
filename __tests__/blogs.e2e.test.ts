@@ -3,6 +3,7 @@ import {setDB} from '../src/db/db'
 import {dataset1} from './datasets'
 import {SETTINGS} from '../src/settings'
 import { HTTP_STATUSES } from '../src/settings'
+import { codedAuth } from '../src/settings'
 
 describe('/blogs', () => {
     beforeAll(async () => { // очистка базы данных перед началом тестирования
@@ -39,7 +40,7 @@ describe('/blogs', () => {
             description: "This blog tells about new skills required",
             websiteUrl: "https://blog.logrocket.com/"
         }
-        const createdBlog = await req.post(SETTINGS.PATH.BLOGS).send(newBlog).expect(HTTP_STATUSES.CREATED_201)
+        const createdBlog = await req.post(SETTINGS.PATH.BLOGS).send(newBlog).set({'authorization': 'Basic ' + codedAuth}).expect(HTTP_STATUSES.CREATED_201)
     })
 
     it('should find blog by id', async () => {
@@ -56,11 +57,11 @@ describe('/blogs', () => {
             websiteUrl: "https://blog.logrocket.com/"
         }
 
-        const res = await req.put(SETTINGS.PATH.BLOGS + '/' + dataset1.blogs[0].id).send(newBlog).expect(HTTP_STATUSES.NO_CONTENT_204)
+        const res = await req.put(SETTINGS.PATH.BLOGS + '/' + dataset1.blogs[0].id).send(newBlog).set({'authorization': 'Basic ' + codedAuth}).expect(HTTP_STATUSES.NO_CONTENT_204)
     })
 
     it('should delete blog by id', async () => {
         setDB(dataset1)
-        const res = await req.delete(SETTINGS.PATH.BLOGS + '/' + dataset1.blogs[0].id).expect(HTTP_STATUSES.NO_CONTENT_204)
+        const res = await req.delete(SETTINGS.PATH.BLOGS + '/' + dataset1.blogs[0].id).set({'authorization': 'Basic ' + codedAuth}).expect(HTTP_STATUSES.NO_CONTENT_204)
     })
 })
